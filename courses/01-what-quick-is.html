@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- social:start -->
+<meta name="description" content="Session 1 of 3. What Amazon Quick is: where it came from (QuickSight and Q Business), the parts that make it up, the plans and who can build what, and a first space with a chat agent on the 30-day trial.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Learn with Phoebe">
+<meta property="og:title" content="What Quick actually is - learn amazon quick with phoebe">
+<meta property="og:description" content="Session 1 of 3. The lineage, the parts, the plans, and your first space and chat agent.">
+<meta property="og:url" content="https://phoebefu6.github.io/learn-amazon-quick-with-phoebe/courses/01-what-quick-is.html">
+<meta property="og:image" content="https://phoebefu6.github.io/learn-amazon-quick-with-phoebe/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="What Quick actually is - learn amazon quick with phoebe">
+<meta name="twitter:description" content="Session 1 of 3. The lineage, the parts, the plans, and your first space and chat agent.">
+<meta name="twitter:image" content="https://phoebefu6.github.io/learn-amazon-quick-with-phoebe/assets/og-cover.png">
+<!-- social:end -->
+<title>Session 1 · What Quick actually is - learn amazon quick with phoebe</title>
+<link rel="stylesheet" href="../assets/style.css?v=4">
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="wrap">
+    <span class="crumb"><a href="../index.html">learn-amazon-quick-with-phoebe</a> / Session 1 of 3</span>
+    <button class="btn" id="toggle-all" type="button">Expand all</button>
+    <button class="btn primary" id="zoom-toggle" type="button">Projector zoom: off</button>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Learn Amazon Quick with Phoebe · Session 1 of 3</div>
+    <h1>What <span class="accent">Quick</span> actually is</h1>
+    <p class="sub">Amazon Quick is AWS's answer to a question every data team now hears: can our people just ask? It bundles dashboards, chat over documents, chat over data, a research agent and workflow automation into one product with one per-user price. Tonight we trace where it came from, take it apart into the pieces you will actually configure, read the plans for who can build what, and stand up a first space with a chat agent on the free trial.</p>
+    <div class="chip-row">
+      <span class="chip level">🟢 Foundations</span>
+      <span class="chip audience">Data and platform leads, analysts</span>
+      <span class="chip audience">An AWS account for the trial</span>
+      <span class="chip time">45 min</span>
+    </div>
+    <div class="agenda">
+      <span class="a1" style="flex:1">0-3 · Welcome</span>
+      <span class="a2" style="flex:4">3-18 · Lineage, parts, plans</span>
+      <span class="a3" style="flex:5">18-40 · Build-along: first space and agent</span>
+      <span class="a4" style="flex:1">40-45 · Q&amp;A</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="section" id="intro">
+    <div class="section-kicker">
+      <span class="klabel">Part 0</span>
+      <h2>Where we start</h2>
+    </div>
+    <p class="lede">The running case is constructed. Oakmere Insurance is an invented regional insurer in Singapore. Over two years its data team built Compass, an in-house knowledge platform inside Oakmere's own AWS account: documents and claims data in an S3 lake, a Glue catalog, Lake Formation rules that hide personal data from anyone without clearance, a chatbot that answers from policy documents, a text-to-SQL assistant over Athena, and an MCP server that lets Oakmere's AI agents query all of it. The AWS account team has now offered Amazon Quick. Priya, Oakmere's head of data (constructed), has three sessions to decide whether Quick replaces Compass, sits on top of it, or stays out.</p>
+
+    <div class="legend">
+      <span class="pill">🎫 Clear all three quiz questions to stamp your passport</span>
+      <span class="pill">Live = presented in the 45 minutes</span>
+      <span class="pill">Self-study = the full depth, after class</span>
+      <span class="pill">★ Build-along = do it yourself on the trial</span>
+    </div>
+
+    <div class="callout win">
+      <p><strong>★ What you walk out with tonight.</strong> A one-minute explanation of Quick that survives a sceptical CIO, a map of its parts with the Compass piece each one competes with, a clear view of which plan can build what, and a working space with a chat agent that answers from your own documents.</p>
+    </div>
+
+    <div class="callout tip">
+      <p><strong>Prices and names move monthly.</strong> Quick was renamed twice and repriced during 2026. Every fact here was read on AWS pages on 26 November 2026. Before you quote a number to anyone, open the <a href="https://aws.amazon.com/quick/pricing/">pricing page ↗</a> and the <a href="https://aws.amazon.com/new/">What's New feed ↗</a>.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-1">
+    <div class="section-kicker">
+      <span class="klabel">Part 1 · covers the lineage</span>
+      <h2>Two products and a new layer</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">Quick is not a new product so much as a merger with a new layer on top. Amazon QuickSight was AWS's BI tool. Amazon Q Business was its chat-over-company-documents service. In October 2025 AWS put both under one name, Amazon Quick Suite, and added agents that research, run workflows and take actions. Then it kept moving.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 270" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Timeline from October 2025 to late 2026: Quick Suite generally available October 2025; Research inside Flows December 2025; renamed Amazon Quick with individual plans April 2026, reported by independent sources; Dataset Q and A generally available May 2026; Q Business closed to new customers end of July 2026; Essentials tier and the account fee on every organisation plan later in 2026, date not confirmed.">
+        <defs>
+          <filter id="q1aSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.2" xChannelSelector="R" yChannelSelector="G"/></filter>
+        </defs>
+        <style>
+          .q1aH { font: 800 12px Inter, sans-serif; fill: #2B1B27; }
+          .q1aD { font: 800 12px Inter, sans-serif; fill: #8A3B76; }
+          .q1aL { font: 600 12px Inter, sans-serif; fill: #2B1B27; }
+          .q1aS { font: 400 11px Inter, sans-serif; fill: #6B5766; }
+          .q1aW { font: 700 11px Inter, sans-serif; fill: #6B3006; }
+          .q1aN { font: 400 12px Inter, sans-serif; fill: #6B5766; }
+        </style>
+        <text class="q1aH" x="30" y="28">FROM TWO PRODUCTS TO ONE NAME, IN FOURTEEN MONTHS</text>
+        <g filter="url(#q1aSk)" fill="none" stroke="#2B1B27" stroke-width="2" stroke-linecap="round">
+          <path d="M40 130 L850 130"/>
+          <circle cx="90" cy="130" r="9" fill="#A84E92"/>
+          <circle cx="230" cy="130" r="7" fill="#FFFFFF"/>
+          <circle cx="370" cy="130" r="9" fill="#A84E92"/>
+          <circle cx="510" cy="130" r="7" fill="#FFFFFF"/>
+          <circle cx="650" cy="130" r="9" fill="#B0500E"/>
+          <circle cx="790" cy="130" r="7" fill="#FFFFFF" stroke-dasharray="4 3"/>
+        </g>
+        <text class="q1aD" x="90" y="110" text-anchor="middle">Oct 2025</text>
+        <text class="q1aL" x="90" y="158" text-anchor="middle">Quick Suite GA</text>
+        <text class="q1aS" x="90" y="174" text-anchor="middle">QuickSight + Q Business</text>
+        <text class="q1aS" x="90" y="188" text-anchor="middle">+ agents</text>
+        <text class="q1aD" x="230" y="110" text-anchor="middle">Dec 2025</text>
+        <text class="q1aL" x="230" y="158" text-anchor="middle">Research in Flows</text>
+        <text class="q1aS" x="230" y="174" text-anchor="middle">reports on a schedule</text>
+        <text class="q1aD" x="370" y="110" text-anchor="middle">Apr 2026</text>
+        <text class="q1aL" x="370" y="158" text-anchor="middle">Renamed Amazon Quick</text>
+        <text class="q1aS" x="370" y="174" text-anchor="middle">individual plans</text>
+        <text class="q1aS" x="370" y="188" text-anchor="middle">(independent reports)</text>
+        <text class="q1aD" x="510" y="110" text-anchor="middle">May 2026</text>
+        <text class="q1aL" x="510" y="158" text-anchor="middle">Dataset Q&amp;A GA</text>
+        <text class="q1aS" x="510" y="174" text-anchor="middle">text-to-SQL</text>
+        <text class="q1aD" x="650" y="110" text-anchor="middle">Jul 2026</text>
+        <text class="q1aW" x="650" y="158" text-anchor="middle">Q Business closed</text>
+        <text class="q1aS" x="650" y="174" text-anchor="middle">to new customers</text>
+        <text class="q1aD" x="790" y="110" text-anchor="middle">Later 2026</text>
+        <text class="q1aL" x="790" y="158" text-anchor="middle">Essentials tier</text>
+        <text class="q1aS" x="790" y="174" text-anchor="middle">$250 fee on all plans</text>
+        <text class="q1aS" x="790" y="188" text-anchor="middle">(date not confirmed)</text>
+        <text class="q1aN" x="30" y="246">Filled dots are dates on an AWS page; open dots come from independent reports or carry no date.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - a product that changed shape five times in fourteen months is a product whose contract terms you re-read every renewal</figcaption>
+    </figure>
+
+    <details class="card" open>
+      <summary><span class="mode live">Live</span>What "merger" means for a buyer<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>If your organisation already pays for QuickSight, you are partly a Quick customer today. AWS maps old QuickSight Reader licences to the new Essentials plan and Author licences to Enterprise (until 31 March 2027). If you built on Q Business, you face a forced move: AWS closed it to new customers at the end of July 2026 (its own pages give the 30th and the 31st), keeps it in maintenance with no new features, and offers a route called Bring Your Own Index that plugs at most two Q Business indexes per Region into Quick. Q Apps, actions and guardrails do not carry over.</p>
+        <p>For Oakmere this matters less: Compass replaced the need for Q Business. But Priya notes the pattern. A managed service that closed one product to new customers within two years of launching its successor can do it again.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>Which name to use<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>AWS pages today say both "AWS Quick" and "Amazon Quick", and older blogs say "Amazon Quick Suite". The documentation now lives under <code>docs.aws.amazon.com/quick/</code>. Search with all three names: posts from the first months still use Quick Suite, and the BI part keeps some QuickSight URLs.</p>
+      </div>
+    </details>
+  </section>
+
+  <section class="section" id="part-2">
+    <div class="section-kicker">
+      <span class="klabel">Part 2 · covers the parts</span>
+      <h2>Seven parts, and the Compass piece each one competes with</h2>
+      <span class="tag concept">6 min live</span>
+    </div>
+    <p class="lede">Strip the marketing and Quick is a stack. At the bottom sit the things it reads: datasets and connected knowledge. In the middle, the ways people ask: chat agents, Quick Sight questions and the research agent. On top, the things that act: Flows and Automate. Beside it runs one door outward, actions and MCP, that lets Quick call other systems.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Quick drawn as three layers. Bottom, what it reads: Quick Index and knowledge bases, Spaces, Quick Sight datasets. Middle, how people ask: chat agents, Quick Sight questions and dashboards, Quick Research. Top, what acts: Flows and Automate. A side column shows actions and MCP with an arrow pointing outward only. On the right, the Compass piece each layer competes with: the document lake and catalog, the chatbot and text-to-SQL assistant, and nothing yet for workflows.">
+        <defs>
+          <filter id="q1bSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="17" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.2" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <marker id="q1bAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#B0500E" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .q1bH { font: 800 12px Inter, sans-serif; fill: #2B1B27; }
+          .q1bK { font: 800 11px Inter, sans-serif; fill: #5E2552; }
+          .q1bL { font: 600 12px Inter, sans-serif; fill: #2B1B27; }
+          .q1bS { font: 400 11px Inter, sans-serif; fill: #6B5766; }
+          .q1bW { font: 700 11px Inter, sans-serif; fill: #6B3006; }
+          .q1bN { font: 400 12px Inter, sans-serif; fill: #6B5766; }
+        </style>
+        <text class="q1bH" x="30" y="26">QUICK AS A STACK · AND WHAT OAKMERE ALREADY HAS</text>
+        <g filter="url(#q1bSk)" fill="none" stroke="#2B1B27" stroke-width="2" stroke-linejoin="round">
+          <rect x="30" y="46" width="500" height="74" rx="12" fill="#FBF1F8"/>
+          <rect x="30" y="136" width="500" height="84" rx="12" fill="#FFFFFF"/>
+          <rect x="30" y="236" width="500" height="84" rx="12" fill="#FBF1F8" stroke="#A84E92"/>
+          <rect x="548" y="46" width="110" height="274" rx="12" fill="#FDF0E6" stroke="#B0500E"/>
+          <rect x="680" y="46" width="180" height="74" rx="12" fill="#FFFFFF" stroke-dasharray="6 4"/>
+          <rect x="680" y="136" width="180" height="84" rx="12" fill="#FFFFFF" stroke-dasharray="6 4"/>
+          <rect x="680" y="236" width="180" height="84" rx="12" fill="#FFFFFF" stroke-dasharray="6 4"/>
+          <path d="M603 200 L603 140" stroke="#B0500E" marker-end="url(#q1bAr)"/>
+        </g>
+        <text class="q1bK" x="46" y="68">ACTS</text>
+        <text class="q1bL" x="46" y="90">Flows</text>
+        <text class="q1bS" x="46" y="106">simple natural-language workflows</text>
+        <text class="q1bL" x="290" y="90">Automate (Enterprise)</text>
+        <text class="q1bS" x="290" y="106">multi-step, human approval</text>
+        <text class="q1bK" x="46" y="158">ASKS</text>
+        <text class="q1bL" x="46" y="180">Chat agents</text>
+        <text class="q1bS" x="46" y="196">over knowledge and data</text>
+        <text class="q1bL" x="210" y="180">Quick Sight</text>
+        <text class="q1bS" x="210" y="196">dashboards, Dataset Q&amp;A</text>
+        <text class="q1bL" x="380" y="180">Quick Research</text>
+        <text class="q1bS" x="380" y="196">cited reports</text>
+        <text class="q1bK" x="46" y="258">READS</text>
+        <text class="q1bL" x="46" y="280">Quick Index</text>
+        <text class="q1bS" x="46" y="296">knowledge bases, connectors</text>
+        <text class="q1bL" x="230" y="280">Spaces</text>
+        <text class="q1bS" x="230" y="296">files for a team</text>
+        <text class="q1bL" x="370" y="280">Datasets</text>
+        <text class="q1bS" x="370" y="296">Athena, Redshift, SPICE</text>
+        <text class="q1bW" x="603" y="80" text-anchor="middle">Actions</text>
+        <text class="q1bW" x="603" y="96" text-anchor="middle">+ MCP</text>
+        <text class="q1bS" x="603" y="232" text-anchor="middle">calls out</text>
+        <text class="q1bS" x="603" y="248" text-anchor="middle">only</text>
+        <text class="q1bK" x="694" y="68">COMPASS HAS</text>
+        <text class="q1bS" x="694" y="90">nothing yet:</text>
+        <text class="q1bS" x="694" y="106">a gap Quick fills</text>
+        <text class="q1bL" x="694" y="180">Chatbot + SQL bot</text>
+        <text class="q1bS" x="694" y="196">plus MCP for agents</text>
+        <text class="q1bL" x="694" y="280">S3 lake + catalog</text>
+        <text class="q1bS" x="694" y="296">Lake Formation tiers</text>
+        <text class="q1bN" x="30" y="346">Quick overlaps Compass on the bottom two layers and adds a top layer Compass never built.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the overlap is where the build-or-buy argument lives; the top layer is where Quick is plainly ahead</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>The reading layer: Index, Spaces, datasets<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>Quick Index and knowledge bases</strong> pull documents in through connectors: S3, SharePoint, OneDrive, Google Drive, Confluence and a web crawler among them. Sync runs daily by default, and one sync run stops after 14 days. The index grows automatically up to 2 TB per account.</p>
+        <p><strong>Spaces</strong> are shared team areas that hold files, knowledge, data and agents together: up to 10,000 files and under 10 GB each, with single uploads up to 500 MB for PDF, Word and PowerPoint and 50 MB for other types.</p>
+        <p><strong>Datasets</strong> belong to the Quick Sight side: tables from Athena, Redshift, Aurora PostgreSQL and others, either queried directly or copied into SPICE, Quick's in-memory store. Hold on to the word SPICE: session 2 shows it matters for who can see what.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>The asking layer: agents, Sight, Research<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>Chat agents</strong> answer from the knowledge, data and actions you attach to them, with citations. You can build custom agents for a team. There is no model picker: you choose a speed mode (AWS's pages say Fast, Balanced and Smart), not a model.</p>
+        <p><strong>Quick Sight</strong> is the BI part: dashboards plus natural-language questions. Since 4 May 2026 its Dataset Q&amp;A writes SQL in the right dialect for Athena, Redshift, Aurora PostgreSQL, Iceberg tables in S3 table buckets and SPICE, and shows that SQL on request.</p>
+        <p><strong>Quick Research</strong> is a deep-research agent that writes cited reports from internal data, the web and third-party datasets.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>The acting layer and the one door out<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>Flows</strong> are workflows written in plain language; since December 2025 a Flow can run Research as a step. <strong>Automate</strong>, on Enterprise only, runs multi-step work across systems with a human approval step.</p>
+        <p><strong>Actions and MCP.</strong> Quick ships action connectors (Salesforce, Jira, ServiceNow, Slack, email and more) and can connect to remote MCP servers, turning their tools into actions. The direction matters: Quick is an MCP <em>client</em>. It can call Compass's MCP server; Oakmere's own AI agents have no documented way to call Quick. On Enterprise only, remote servers only, up to 100 tools per server.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>The demo that always lands.</strong> The usual vendor demo connects SharePoint, asks a policy question, gets a cited answer, then turns the answer into a scheduled report with one sentence. Every step is real. What a demo never shows is the permission model on the documents, the region the prompt was processed in, or the bill in month four. Sessions 2 and 3 are those three questions.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-3">
+    <div class="section-kicker">
+      <span class="klabel">Part 3 · covers the plans</span>
+      <h2>Who can build what</h2>
+      <span class="tag concept">4 min live</span>
+    </div>
+    <p class="lede">Quick is priced per person, and the plan decides what that person can do, not just how much they can use. The single most expensive surprise is that the controls an insurer needs sit on the top plan. Session 2 prices it; here, read the table for capability.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bar chart of monthly price per user for the three organisation plans: Essentials 3 dollars with 1 agent hour, Professional 20 dollars with 8 agent hours, Enterprise 40 dollars with 18 agent hours. A note marks that every organisation plan also pays 250 dollars per AWS account per month, and that dashboards, Automate, customer keys, private network and MCP need Enterprise.">
+        <defs>
+          <filter id="q1cSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="23" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2" xChannelSelector="R" yChannelSelector="G"/></filter>
+        </defs>
+        <style>
+          .q1cH { font: 800 12px Inter, sans-serif; fill: #2B1B27; }
+          .q1cV { font: 800 16px Inter, sans-serif; fill: #2B1B27; }
+          .q1cL { font: 600 12px Inter, sans-serif; fill: #2B1B27; }
+          .q1cS { font: 400 11px Inter, sans-serif; fill: #6B5766; }
+          .q1cW { font: 700 12px Inter, sans-serif; fill: #6B3006; }
+          .q1cN { font: 400 12px Inter, sans-serif; fill: #6B5766; }
+        </style>
+        <text class="q1cH" x="30" y="26">PER USER PER MONTH, ORGANISATION PLANS (AWS PRICING PAGE, 26 NOV 2026)</text>
+        <g filter="url(#q1cSk)" stroke="#2B1B27" stroke-width="2" stroke-linejoin="round">
+          <path d="M60 240 L520 240" fill="none"/>
+          <rect x="90" y="228" width="90" height="12" fill="#FBF1F8"/>
+          <rect x="240" y="160" width="90" height="80" fill="#EBCBE2"/>
+          <rect x="390" y="80" width="90" height="160" fill="#A84E92"/>
+        </g>
+        <text class="q1cV" x="135" y="218" text-anchor="middle">$3</text>
+        <text class="q1cV" x="285" y="150" text-anchor="middle">$20</text>
+        <text class="q1cV" x="435" y="70" text-anchor="middle">$40</text>
+        <text class="q1cL" x="135" y="258" text-anchor="middle">Essentials</text>
+        <text class="q1cS" x="135" y="274" text-anchor="middle">1 agent hour</text>
+        <text class="q1cL" x="285" y="258" text-anchor="middle">Professional</text>
+        <text class="q1cS" x="285" y="274" text-anchor="middle">8 agent hours</text>
+        <text class="q1cL" x="435" y="258" text-anchor="middle">Enterprise</text>
+        <text class="q1cS" x="435" y="274" text-anchor="middle">18 agent hours</text>
+        <g filter="url(#q1cSk)" fill="#FDF0E6" stroke="#B0500E" stroke-width="2"><rect x="560" y="60" width="300" height="190" rx="12"/></g>
+        <text class="q1cW" x="578" y="88">+ $250 per AWS account / month</text>
+        <text class="q1cS" x="578" y="108">on every organisation plan</text>
+        <text class="q1cL" x="578" y="140">Enterprise only:</text>
+        <text class="q1cS" x="578" y="160">dashboards and datasets, Automate</text>
+        <text class="q1cS" x="578" y="178">customer-managed KMS keys</text>
+        <text class="q1cS" x="578" y="196">private network (VPC) to sources</text>
+        <text class="q1cS" x="578" y="214">MCP servers, deny-by-default</text>
+        <text class="q1cS" x="578" y="232">for new AI features</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the bar you pay is set by the controls you need, not by how much a person uses</figcaption>
+    </figure>
+
+    <table class="clean">
+      <tr><th>Plan</th><th>Per user / month</th><th>Can do</th><th>Cannot do</th></tr>
+      <tr><td>Essentials</td><td>$3</td><td>Read dashboards, light chat (1 agent hour; 3 until 31 Jan 2027)</td><td>Build anything</td></tr>
+      <tr><td>Professional</td><td>$20</td><td>Chat agents, Research, Flows, 8 agent hours, 25 GB pooled index</td><td>Dashboards, Quick Sight datasets, Automate</td></tr>
+      <tr><td>Enterprise</td><td>$40</td><td>Everything above, plus dashboards, Automate, MCP, customer keys, private network, 18 agent hours, 50 GB</td><td>Pick the model</td></tr>
+      <tr><td>Individual Free / Plus / Max</td><td>$0 / $20-25 / $100-125</td><td>No AWS account, no account fee; Plus up to 300 users</td><td>Organisation controls</td></tr>
+    </table>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Read the plan for the controls, not the usage<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>A plan comparison invites you to ask "how heavy is each user?". For a regulated buyer the first question is different: which controls does our risk team require, and which plan carries them? Customer-managed encryption keys, a private network path to data sources, MCP and the switch that keeps new AI features off until an admin turns them on are all Enterprise. Whether those controls cover Professional users in the same account is not stated on any public AWS page. Until AWS answers that in writing, plan on $40 a head.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>The individual plans are a different product<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Free, Plus and Max need no AWS account and pay no account fee. They suit a person or a small team trying Quick on their own files. They are not a way to give a regulated company cheap seats: none of the organisation controls above come with them, and the data sits outside your AWS organisation's governance.</p>
+      </div>
+    </details>
+  </section>
+
+  <section class="section" id="demo-1">
+    <div class="section-kicker">
+      <span class="klabel">Build-along</span>
+      <h2>Your first space and chat agent, on the trial</h2>
+      <span class="tag demo">★ 22 min · everyone builds</span>
+    </div>
+    <p class="lede">The trial gives 30 days of Enterprise for up to 25 users, with the account fee waived and no card needed. Priya's analyst does exactly what you will do: one space, three documents, three questions, one agent, and a note of everything that surprised them. Use documents you are allowed to upload: public ones are safest for a first run.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Build-along flow in five boxes: start the trial and note the date it ends; create a space; upload three public documents; ask three questions including one the documents cannot answer; build a chat agent scoped to the space. An orange flag on the first box reads: billing starts automatically after 30 days.">
+        <defs>
+          <filter id="q1dSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="31" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.2" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <marker id="q1dAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#2B1B27" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .q1dH { font: 800 12px Inter, sans-serif; fill: #2B1B27; }
+          .q1dK { font: 800 18px Inter, sans-serif; fill: #A84E92; }
+          .q1dL { font: 600 12px Inter, sans-serif; fill: #2B1B27; }
+          .q1dS { font: 400 11px Inter, sans-serif; fill: #6B5766; }
+          .q1dW { font: 700 11px Inter, sans-serif; fill: #6B3006; }
+        </style>
+        <text class="q1dH" x="30" y="26">FIVE MOVES, ONE SPACE, ONE AGENT</text>
+        <g filter="url(#q1dSk)" fill="#FFFFFF" stroke="#2B1B27" stroke-width="2" stroke-linejoin="round">
+          <rect x="30" y="60" width="150" height="110" rx="12" fill="#FDF0E6" stroke="#B0500E"/>
+          <rect x="202" y="60" width="150" height="110" rx="12"/>
+          <rect x="374" y="60" width="150" height="110" rx="12"/>
+          <rect x="546" y="60" width="150" height="110" rx="12"/>
+          <rect x="718" y="60" width="150" height="110" rx="12" fill="#FBF1F8"/>
+          <path d="M182 115 L200 115" fill="none" marker-end="url(#q1dAr)"/>
+          <path d="M354 115 L372 115" fill="none" marker-end="url(#q1dAr)"/>
+          <path d="M526 115 L544 115" fill="none" marker-end="url(#q1dAr)"/>
+          <path d="M698 115 L716 115" fill="none" marker-end="url(#q1dAr)"/>
+        </g>
+        <text class="q1dK" x="46" y="88">1</text><text class="q1dL" x="46" y="112">Start the trial</text><text class="q1dS" x="46" y="130">note the end date</text>
+        <text class="q1dK" x="218" y="88">2</text><text class="q1dL" x="218" y="112">Create a space</text><text class="q1dS" x="218" y="130">one team, one topic</text>
+        <text class="q1dK" x="390" y="88">3</text><text class="q1dL" x="390" y="112">Upload 3 docs</text><text class="q1dS" x="390" y="130">public ones first</text>
+        <text class="q1dK" x="562" y="88">4</text><text class="q1dL" x="562" y="112">Ask 3 questions</text><text class="q1dS" x="562" y="130">one it cannot answer</text>
+        <text class="q1dK" x="734" y="88">5</text><text class="q1dL" x="734" y="112">Build an agent</text><text class="q1dS" x="734" y="130">scoped to the space</text>
+        <text class="q1dW" x="30" y="196">Billing starts automatically after 30 days.</text>
+        <text class="q1dS" x="30" y="214">Put the end date in your calendar before step 2.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - step 4's unanswerable question is the most useful test you will run tonight</figcaption>
+    </figure>
+
+    <div class="steps">
+      <div class="step">
+        <p><strong>Start the trial and write down two things.</strong> From the Quick console, start the 30-day Enterprise trial. Record the AWS Region it runs in and the date the trial ends: billing for Enterprise starts automatically afterwards. If the console offers a choice of identity (IAM Identity Center or another), pick Identity Center for anything beyond a test; AWS's guidance says switching away from it later means ending the subscription.</p>
+        <div class="prompt-box good"><span class="label">★ Step 1 · your trial card</span>Region:        ap-southeast-1 (Singapore)
+Trial ends:    ____ (calendar reminder set: yes / no)
+Identity:      IAM Identity Center
+Users invited: just me, for now</div>
+      </div>
+      <div class="step">
+        <p><strong>Create a space with a narrow job.</strong> A space for "everything" teaches you nothing. Oakmere's analyst names theirs after one question the claims team asks every week. Keep the name and description plain; the agent you build in step 5 will lean on them.</p>
+        <div class="prompt-box good"><span class="label">★ Step 2 · the space</span>Name:         Motor claims policy questions
+Description:  What our motor policy wording covers and excludes.
+              Answers must cite the clause.</div>
+      </div>
+      <div class="step">
+        <p><strong>Upload three documents.</strong> Use public documents for the first run: a published annual report, a product brochure and a public policy wording are ideal. PDF, Word and PowerPoint up to 500 MB each. Watch how long indexing takes and whether every file shows as ready.</p>
+      </div>
+      <div class="step">
+        <p><strong>Ask three questions and grade each answer.</strong> One the documents answer directly, one that needs two documents together, and one the documents cannot answer at all. The third is the real test: a good assistant says it does not know; a weak one invents.</p>
+        <div class="prompt-box good"><span class="label">★ Step 4 · the three questions</span>Q1  What does the policy say about windscreen damage?
+    cited? __  right clause? __
+Q2  Which product in the brochure matches the cover in
+    section 4 of the wording?     cited both? __
+Q3  What was our claims ratio last March?
+    (not in any document)  said "not found"? __  invented? __</div>
+      </div>
+      <div class="step">
+        <p><strong>Build a chat agent scoped to the space.</strong> Give it the space as its only knowledge, a one-line role, and one instruction about citations. Ask it Q3 again. Then share it with one colleague and ask them to try to make it answer something outside the space.</p>
+        <div class="prompt-box good"><span class="label">★ Step 5 · the agent</span>Name:          Motor wording helper
+Knowledge:     space "Motor claims policy questions" only
+Instructions:  Answer only from the attached documents.
+               Quote the clause number. If the documents do not
+               answer the question, say so and stop.</div>
+      </div>
+      <div class="step">
+        <p><strong>Write the surprise list.</strong> Three lines: what was easier than you expected, what was harder, and one thing you would need to ask AWS before letting real Oakmere documents in. Bring it to session 2.</p>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <p><strong>Menus move.</strong> Quick's console changes with each release, and button names drift. The concepts in these steps, space, knowledge, agent, instructions, are stable; if a label differs, the <a href="https://docs.aws.amazon.com/quick/latest/userguide/working-with-spaces.html">Spaces guide ↗</a> is the reference.</p>
+    </div>
+  </section>
+
+  <section class="section" id="exercise">
+    <div class="section-kicker">
+      <span class="klabel">Homework</span>
+      <h2>Before session 2</h2>
+      <span class="tag exercise">30 min</span>
+    </div>
+    <ol>
+      <li><strong>Map your own stack.</strong> Redraw the Part 2 figure with your organisation's tools in the right-hand column. Which of Quick's layers has no counterpart today?</li>
+      <li><strong>Find your licences.</strong> Does your organisation already pay for QuickSight? How many Readers and Authors? Those map to Essentials and Enterprise.</li>
+      <li><strong>Run Q3 five times.</strong> Ask the unanswerable question with five wordings. Count how often the agent says "not found".</li>
+      <li><strong>List your controls.</strong> Ask your risk or security team which three controls they would require before any document goes in. Bring the list.</li>
+    </ol>
+  </section>
+
+  <section class="section" id="quiz">
+    <div class="section-kicker">
+      <span class="klabel">Check yourself</span>
+      <h2>Three questions</h2>
+    </div>
+    <p>Clear all three and session 1 gets stamped in your passport.</p>
+
+    <div class="quiz-q" data-answer="2">
+      <p class="qtext">1 · Oakmere's AI agents need to query the documents and data Quick has indexed. What does the documentation support?</p>
+      <button class="qopt" type="button">A · Agents call Quick's built-in MCP server</button>
+      <button class="qopt" type="button">B · Agents call Quick through any action connector</button>
+      <button class="qopt" type="button">C · Nothing documented: Quick is an MCP client that calls other servers, not a server agents can call</button>
+      <button class="qopt" type="button">D · Agents need the Professional plan to call Quick</button>
+      <p class="qwhy">Quick's MCP support runs one way: it connects to remote MCP servers and uses their tools. No AWS page describes outside agents calling Quick. For Oakmere that means Compass's MCP server keeps serving agents whatever is decided.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="1">
+      <p class="qtext">2 · Priya's risk team requires customer-managed encryption keys. Which plan must Oakmere budget for?</p>
+      <button class="qopt" type="button">A · Essentials, because keys are an account setting</button>
+      <button class="qopt" type="button">B · Enterprise, until AWS confirms in writing that the control covers other plans in the same account</button>
+      <button class="qopt" type="button">C · Professional, because it includes chat agents</button>
+      <button class="qopt" type="button">D · Any individual plan</button>
+      <p class="qwhy">Customer-managed keys are listed as an Enterprise feature. Whether they extend to Professional users in a mixed account is not stated publicly, so the safe budget is $40 a head until AWS says otherwise.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="0">
+      <p class="qtext">3 · In the build-along, why ask a question the documents cannot answer?</p>
+      <button class="qopt" type="button">A · It shows whether the agent admits it does not know or invents an answer, which is the failure that hurts in production</button>
+      <button class="qopt" type="button">B · It uses up agent hours faster so you see the bill</button>
+      <button class="qopt" type="button">C · Quick needs an unanswered question to start indexing</button>
+      <button class="qopt" type="button">D · It trains the model on your gap</button>
+      <p class="qwhy">Answering from the documents is the easy case. An assistant that fills a gap with a plausible number does damage precisely because it sounds right. AWS states Quick does not train on customer data, so D is wrong on the facts too.</p>
+    </div>
+
+    <p class="quiz-score"></p>
+  </section>
+
+  <section class="section" id="official">
+    <div class="section-kicker">
+      <span class="klabel">Sources covered</span>
+      <h2>What this session teaches, and where it came from</h2>
+    </div>
+    <div class="covered">
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name"><a href="https://aws.amazon.com/quick/">Amazon Quick product page</a> and <a href="https://aws.amazon.com/quick/faqs/">FAQs</a></span><span class="note">The parts, plans and the no-training statement, read 26 Nov 2026</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name"><a href="https://aws.amazon.com/quick/pricing/">Quick pricing</a></span><span class="note">Seat prices, agent hours, pooled storage, the account fee, the trial, legacy QuickSight mapping</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name"><a href="https://docs.aws.amazon.com/quick/latest/userguide/working-with-spaces.html">Spaces</a>, <a href="https://docs.aws.amazon.com/quick/latest/userguide/knowledge-base-integrations.html">knowledge bases</a>, <a href="https://docs.aws.amazon.com/quick/latest/userguide/mcp-integration.html">MCP integration</a></span><span class="note">Limits, connectors, sync, MCP direction and limits</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name"><a href="https://docs.aws.amazon.com/amazonq/latest/qbusiness-ug/qbusiness-availability-change.html">Q Business availability change</a></span><span class="note">Closed to new customers end of July 2026; AWS pages differ by a day</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">The April 2026 rename and individual plans</span><span class="note">Reported by independent sources (atlan, cloudvisor); the AWS post did not render, so the date is not confirmed by AWS</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Oakmere, Compass, Priya</span><span class="note">Constructed for teaching; no number about them is a measurement</span></div>
+    </div>
+  </section>
+
+  <section class="cheat" id="cheatsheet">
+    <h3>Session 1 cheat sheet <span>· pin this</span></h3>
+    <div class="grid-2">
+      <div class="cheat-item"><b>What it is</b><span>QuickSight + Q Business + agents, one per-user price. Renamed twice; re-check pages before quoting.</span></div>
+      <div class="cheat-item"><b>Three layers, one door</b><span>Reads (Index, Spaces, datasets), asks (agents, Sight, Research), acts (Flows, Automate). MCP calls out only.</span></div>
+      <div class="cheat-item"><b>Plans</b><span>$3 / $20 / $40 per user plus $250 per account. Dashboards, Automate, keys, VPC and MCP need Enterprise.</span></div>
+      <div class="cheat-item"><b>No model picker</b><span>Speed modes, not models. Only Automate custom agents can bring a Bedrock model.</span></div>
+      <div class="cheat-item"><b>Trial</b><span>30 days, 25 Enterprise users, then it bills. Calendar the end date first.</span></div>
+      <div class="cheat-item"><b>First test</b><span>Ask what the documents cannot answer. Count the inventions.</span></div>
+    </div>
+  </section>
+
+  <div class="callout next">
+    <span class="nx-pill">Next session</span>
+    <p>Priya now knows what Quick is. Session 2 asks the three questions a demo skips: what the bill looks like in month four, where Oakmere's prompts are processed, and whether Compass's personal-data rules survive the trip into Quick.</p>
+  </div>
+
+  <footer class="pagefoot">
+    <span>Session 1 of 3 · learn-amazon-quick-with-phoebe · by Phoebe Fu &nbsp;·&nbsp; 📚 <a href="https://phoebefu6.github.io/learn-with-phoebe/">Learn with Phoebe ↗</a></span>
+    <span><a href="../index.html">← Course home</a> &nbsp;·&nbsp; <a href="02-cost-data-path-controls.html">Next: Cost, data path, controls →</a></span>
+  </footer>
+
+</main>
+
+<script src="../assets/app.js?v=1"></script>
+</body>
+</html>

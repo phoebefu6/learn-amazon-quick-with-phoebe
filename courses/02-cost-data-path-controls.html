@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- social:start -->
+<meta name="description" content="Session 2 of 3. The three questions a Quick demo skips: how the bill is built (seats, the account fee, agent hours, storage), where data is stored and where prompts are processed, and which controls reach chat, which stay on Enterprise and which do not exist.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Learn with Phoebe">
+<meta property="og:title" content="Cost, data path, controls - learn amazon quick with phoebe">
+<meta property="og:description" content="Session 2 of 3. The bill in month four, where prompts are processed, and which data rules survive the trip into Quick.">
+<meta property="og:url" content="https://phoebefu6.github.io/learn-amazon-quick-with-phoebe/courses/02-cost-data-path-controls.html">
+<meta property="og:image" content="https://phoebefu6.github.io/learn-amazon-quick-with-phoebe/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cost, data path, controls - learn amazon quick with phoebe">
+<meta name="twitter:description" content="Session 2 of 3. The bill, the data path and the controls a demo never shows.">
+<meta name="twitter:image" content="https://phoebefu6.github.io/learn-amazon-quick-with-phoebe/assets/og-cover.png">
+<!-- social:end -->
+<title>Session 2 · Cost, data path, controls - learn amazon quick with phoebe</title>
+<link rel="stylesheet" href="../assets/style.css?v=4">
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="wrap">
+    <span class="crumb"><a href="../index.html">learn-amazon-quick-with-phoebe</a> / Session 2 of 3</span>
+    <button class="btn" id="toggle-all" type="button">Expand all</button>
+    <button class="btn primary" id="zoom-toggle" type="button">Projector zoom: off</button>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Learn Amazon Quick with Phoebe · Session 2 of 3</div>
+    <h1>Cost, <span class="accent">data path</span>, controls</h1>
+    <p class="sub">A demo answers "can it?". A buyer has to answer three other questions: what does it cost once people actually use it, where does our data go while it is being answered, and do the rules we already enforce still apply inside it. Tonight we build the bill from its four lines, follow one Oakmere question from the browser to the model and back, and sort every control into three piles: it reaches chat, it needs Enterprise, or it does not exist.</p>
+    <div class="chip-row">
+      <span class="chip level">🟠 Deeper</span>
+      <span class="chip audience">Data, platform and risk leads</span>
+      <span class="chip audience">The trial from session 1</span>
+      <span class="chip time">45 min</span>
+    </div>
+    <div class="agenda">
+      <span class="a1" style="flex:1">0-3 · Welcome</span>
+      <span class="a2" style="flex:4">3-18 · Bill, path, controls</span>
+      <span class="a3" style="flex:5">18-40 · Build-along: talk to data, read the SQL</span>
+      <span class="a4" style="flex:1">40-45 · Q&amp;A</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="section" id="intro">
+    <div class="section-kicker">
+      <span class="klabel">Part 0</span>
+      <h2>Where we start</h2>
+    </div>
+    <p class="lede">Priya's analyst came back from session 1 with a surprise list. Easier than expected: a cited answer from a policy wording in ten minutes. Harder: nobody could say where the answer had been computed. The question for AWS: would Compass's rule that hides customers' identity numbers from anyone below clearance level 3 still hold if the same tables were connected to Quick? Tonight answers that, with the documentation open.</p>
+
+    <div class="legend">
+      <span class="pill">🎫 Clear all three quiz questions to stamp your passport</span>
+      <span class="pill">Live = presented in the 45 minutes</span>
+      <span class="pill">Self-study = the full depth, after class</span>
+      <span class="pill">★ Build-along = do it yourself on the trial</span>
+    </div>
+
+    <div class="callout win">
+      <p><strong>★ What you walk out with tonight.</strong> A four-line bill you can fill for any head count, a drawing of where a prompt is stored and where it is processed in your Region, a three-pile sort of the controls your risk team asked for, and a talk-to-data answer whose SQL you have read line by line.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-1">
+    <div class="section-kicker">
+      <span class="klabel">Part 1 · covers pricing mechanics</span>
+      <h2>The bill has four lines</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">Quick's monthly bill is seats, plus a flat fee per AWS account, plus agent hours beyond each person's allowance, plus index storage beyond the pooled allowance. The first two are fixed by head count. The last two move with behaviour, and one of them is metered in a way that surprises people.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 290" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The monthly bill drawn as four stacked blocks: seats at 3, 20 or 40 dollars per user; 250 dollars per AWS account; agent hours beyond the allowance at 3 dollars each, metered per second including waiting on tools and every scheduled run; index storage beyond the pool at 5 dollars per gigabyte-month. The first two are labelled fixed by head count, the last two moved by behaviour.">
+        <defs>
+          <filter id="q2aSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="5" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.2" xChannelSelector="R" yChannelSelector="G"/></filter>
+        </defs>
+        <style>
+          .q2aH { font: 800 12px Inter, sans-serif; fill: #2B1B27; }
+          .q2aL { font: 700 13px Inter, sans-serif; fill: #2B1B27; }
+          .q2aS { font: 400 11px Inter, sans-serif; fill: #6B5766; }
+          .q2aW { font: 700 11px Inter, sans-serif; fill: #6B3006; }
+          .q2aK { font: 800 11px Inter, sans-serif; fill: #5E2552; }
+          .q2aN { font: 400 12px Inter, sans-serif; fill: #6B5766; }
+        </style>
+        <text class="q2aH" x="30" y="26">ONE MONTH OF QUICK, LINE BY LINE</text>
+        <g filter="url(#q2aSk)" stroke="#2B1B27" stroke-width="2" stroke-linejoin="round">
+          <rect x="30" y="44" width="520" height="50" rx="10" fill="#A84E92"/>
+          <rect x="30" y="100" width="520" height="40" rx="10" fill="#EBCBE2"/>
+          <rect x="30" y="146" width="520" height="50" rx="10" fill="#FDF0E6" stroke="#B0500E"/>
+          <rect x="30" y="202" width="520" height="40" rx="10" fill="#FBF1F8"/>
+          <path d="M570 48 L585 48 L585 136 L570 136" fill="none"/>
+          <path d="M570 150 L585 150 L585 238 L570 238" fill="none" stroke="#B0500E"/>
+        </g>
+        <text x="46" y="66" style="font: 700 13px Inter, sans-serif; fill: #FFFFFF">Seats</text>
+        <text x="46" y="84" style="font: 400 11px Inter, sans-serif; fill: #FFFFFF">users x $3, $20 or $40</text>
+        <text class="q2aL" x="46" y="125">$250 per AWS account</text>
+        <text class="q2aL" x="46" y="168">Agent hours over the allowance x $3</text>
+        <text class="q2aS" x="46" y="186">per second, while active, incl. waiting on tools, every scheduled run</text>
+        <text class="q2aL" x="46" y="227">Index GB over the pool x $5 per month</text>
+        <text class="q2aK" x="600" y="88">FIXED BY</text>
+        <text class="q2aK" x="600" y="104">HEAD COUNT</text>
+        <text class="q2aW" x="600" y="190">MOVED BY</text>
+        <text class="q2aW" x="600" y="206">BEHAVIOUR</text>
+        <text class="q2aN" x="30" y="270">Not shown: SPICE at $0.38 per GB-month and Pixel-Perfect reports, both Quick Sight add-ons.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - budgets are set on the top half; surprises arrive from the bottom half</figcaption>
+    </figure>
+
+    <details class="card" open>
+      <summary><span class="mode live">Live</span>Agent hours are wall-clock, not thinking time<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>AWS meters agent hours per second while Quick is active on a task, and the pricing page says that includes time spent waiting for an external tool to respond. A Research report that waits on a slow system, or a Flow scheduled to run every morning for every analyst, consumes hours whether or not anyone reads the output. The included allowance is 8 hours a person a month on Professional and 18 on Enterprise; beyond that each hour is $3. The three speed modes burn hours at different rates, and AWS does not publish the rates.</p>
+        <p>Two consequences for Priya. First, schedule Flows deliberately: one shared morning report beats twenty personal copies. Second, the admin limit profile is a budget control, not a nicety; on Essentials and Professional, overage only applies once an admin has set one.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>Older numbers you will still find online<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Guides written at launch quote 4 and 8 included agent hours and a separate $6 rate for Research hours. The AWS pricing page read for this session says 8 and 18 included and a flat $3 for every agent hour. Trust the AWS page, and expect it to change again.</p>
+      </div>
+    </details>
+
+    <table class="clean">
+      <tr><th>Oakmere example (constructed)</th><th>Monthly</th></tr>
+      <tr><td>30 Enterprise builders x $40</td><td>$1,200</td></tr>
+      <tr><td>220 Professional users x $20</td><td>$4,400</td></tr>
+      <tr><td>1 AWS account</td><td>$250</td></tr>
+      <tr><td>Agent hours: average 6 a person, under every allowance</td><td>$0</td></tr>
+      <tr><td>Index: 400 GB against a pool of 7,000 GB</td><td>$0</td></tr>
+      <tr><td><strong>Total</strong></td><td><strong>$5,850</strong></td></tr>
+    </table>
+  </section>
+
+  <section class="section" id="part-2">
+    <div class="section-kicker">
+      <span class="klabel">Part 2 · covers where data is stored and processed</span>
+      <h2>Stored here, processed elsewhere</h2>
+      <span class="tag concept">6 min live</span>
+    </div>
+    <p class="lede">AWS makes two statements that sound alike and are not. Stored customer data in Quick does not leave its AWS Region. Prompts and answers, while being processed, can be: Quick uses cross-Region inference, the customer cannot switch it off, and no log records which Region did the work.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Data path for one Oakmere question in Singapore. Inside Oakmere's AWS account: the S3 lake and catalog. A connector copies documents into the Quick index in the Singapore Region, labelled stored, stays in the Region. The prompt goes from the user to Quick in Singapore, then a dashed arrow leaves to a cloud labelled any commercial Region, because Singapore uses global routing. A note says whose account holds the index is not stated publicly.">
+        <defs>
+          <filter id="q2bSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="13" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.2" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <marker id="q2bAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#2B1B27" stroke-width="1.6" stroke-linecap="round"/></marker>
+          <marker id="q2bAw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#991B1B" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .q2bH { font: 800 12px Inter, sans-serif; fill: #2B1B27; }
+          .q2bK { font: 800 11px Inter, sans-serif; fill: #5E2552; }
+          .q2bL { font: 600 12px Inter, sans-serif; fill: #2B1B27; }
+          .q2bS { font: 400 11px Inter, sans-serif; fill: #6B5766; }
+          .q2bR { font: 700 11px Inter, sans-serif; fill: #991B1B; }
+          .q2bN { font: 400 12px Inter, sans-serif; fill: #6B5766; }
+        </style>
+        <text class="q2bH" x="30" y="26">ONE OAKMERE QUESTION, SINGAPORE REGION</text>
+        <g filter="url(#q2bSk)" fill="none" stroke="#2B1B27" stroke-width="2" stroke-linejoin="round">
+          <rect x="30" y="50" width="250" height="230" rx="16" fill="#FBF1F8" stroke="#A84E92"/>
+          <rect x="54" y="110" width="200" height="56" rx="10" fill="#FFFFFF"/>
+          <rect x="54" y="190" width="200" height="56" rx="10" fill="#FFFFFF"/>
+          <rect x="330" y="50" width="280" height="230" rx="16" fill="#FFFFFF" stroke="#8A3B76" stroke-dasharray="7 5"/>
+          <rect x="354" y="110" width="230" height="56" rx="10" fill="#FBF1F8" stroke="#A84E92"/>
+          <rect x="354" y="190" width="230" height="56" rx="10" fill="#FFFFFF"/>
+          <path d="M256 138 L350 138" marker-end="url(#q2bAr)"/>
+          <path d="M256 218 L350 218" marker-end="url(#q2bAr)"/>
+          <path d="M610 218 C 680 218, 700 170, 742 150" stroke="#991B1B" stroke-dasharray="8 6" marker-end="url(#q2bAw)"/>
+          <ellipse cx="790" cy="130" rx="74" ry="44" fill="#FEF2F2" stroke="#991B1B"/>
+        </g>
+        <text class="q2bK" x="46" y="76">OAKMERE AWS ACCOUNT</text>
+        <text class="q2bS" x="46" y="94">Compass lives here</text>
+        <text class="q2bL" x="70" y="134">S3 lake + catalog</text>
+        <text class="q2bS" x="70" y="152">policies, claims tables</text>
+        <text class="q2bL" x="70" y="214">Claims handler</text>
+        <text class="q2bS" x="70" y="232">asks a question</text>
+        <text class="q2bK" x="346" y="76">QUICK, SINGAPORE REGION</text>
+        <text class="q2bS" x="346" y="94">AWS-run service</text>
+        <text class="q2bL" x="370" y="134">Quick index (copy)</text>
+        <text class="q2bS" x="370" y="152">stored: stays in the Region</text>
+        <text class="q2bL" x="370" y="214">Prompt + retrieved text</text>
+        <text class="q2bS" x="370" y="232">sent to a model</text>
+        <text class="q2bR" x="790" y="126" text-anchor="middle">any commercial</text>
+        <text class="q2bR" x="790" y="142" text-anchor="middle">AWS Region</text>
+        <text class="q2bR" x="650" y="262">global routing</text>
+        <text class="q2bS" x="650" y="278">cannot be switched off</text>
+        <text class="q2bS" x="650" y="294">or seen in the logs</text>
+        <text class="q2bN" x="30" y="322">Whose AWS account holds the Quick index is not stated on any public page. Ask AWS in writing.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the stored copy obeys the Region; the prompt in flight, in Singapore, does not</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Three kinds of Region, and which one you are in<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>AWS's Quick Regions page sorts the Regions with agentic features into two routing types, and a third group has no agentic features at all.</p>
+        <table class="clean">
+          <tr><th>Routing</th><th>Regions</th><th>What it means</th></tr>
+          <tr><td>Global</td><td>Singapore, Mumbai, Sao Paulo</td><td>Bedrock's own definition of global inference: processed in any commercial Region</td></tr>
+          <tr><td>Within a geography</td><td>Sydney, Tokyo, N. Virginia, Oregon, Frankfurt, Ireland, London, Paris</td><td>Kept inside a bloc (US, EU) or a country pair (Sydney and Melbourne, Tokyo and Osaka)</td></tr>
+          <tr><td>No agentic features</td><td>Hong Kong, Seoul, Jakarta, Ohio, Canada and others</td><td>Quick Sight BI runs in 26 Regions; chat, Research and Flows do not run here</td></tr>
+        </table>
+        <p>Web search crosses Regions too: from Frankfurt it runs in Ireland. Flow schedules run only in N. Virginia, Oregon and Ireland.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>The documents disagree with each other<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Quick's outbound-connections page says processing stays "within the geography". Its Regions table lists Singapore, Mumbai and Sao Paulo as Global, and Bedrock's page defines global inference as any commercial Region. Both are AWS pages and they cannot both be the whole story for Singapore. A buyer in one of those three Regions should get AWS's answer in the contract, not from either page. The page also notes that Bedrock controls you may already use, service control policies and inference-profile permissions, do not apply inside Quick.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>"Data never leaves the Region" is two promises.</strong> A data-residency clause usually names storage. Regulators increasingly ask about processing too. An honest vendor answer separates them, the way AWS's own pages do. A brochure that says only the first one is not wrong; it is incomplete.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-3">
+    <div class="section-kicker">
+      <span class="klabel">Part 3 · covers controls</span>
+      <h2>Three piles: reaches chat, needs Enterprise, does not exist</h2>
+      <span class="tag concept">4 min live</span>
+    </div>
+    <p class="lede">Take the controls Oakmere's risk team asked for and sort them. Some reach every chat answer. Some exist only on Enterprise. Some stop at a boundary the demo never crosses. Lake Formation is the sharpest example: it reaches one path into Quick and not the others.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Lake Formation reach in Quick. One Lake Formation rule on the claims table, hiding identity numbers below clearance 3. Three paths lead into Quick: direct Athena query with Identity Center propagation, where the rule is applied, marked with a check; SPICE copy, where it is not supported, marked with a red bar; chat knowledge base, where enforcement is not documented, marked with a question mark.">
+        <defs>
+          <filter id="q2cSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="29" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.2" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <marker id="q2cAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#2B1B27" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .q2cH { font: 800 12px Inter, sans-serif; fill: #2B1B27; }
+          .q2cL { font: 600 12px Inter, sans-serif; fill: #2B1B27; }
+          .q2cS { font: 400 11px Inter, sans-serif; fill: #6B5766; }
+          .q2cG { font: 800 12px Inter, sans-serif; fill: #5E2552; }
+          .q2cR { font: 800 12px Inter, sans-serif; fill: #991B1B; }
+          .q2cW { font: 800 12px Inter, sans-serif; fill: #6B3006; }
+          .q2cN { font: 400 12px Inter, sans-serif; fill: #6B5766; }
+        </style>
+        <text class="q2cH" x="30" y="26">ONE LAKE FORMATION RULE, THREE PATHS INTO QUICK</text>
+        <g filter="url(#q2cSk)" fill="#FFFFFF" stroke="#2B1B27" stroke-width="2" stroke-linejoin="round">
+          <rect x="30" y="110" width="210" height="80" rx="12" fill="#FBF1F8" stroke="#A84E92"/>
+          <rect x="330" y="50" width="250" height="56" rx="10"/>
+          <rect x="330" y="122" width="250" height="56" rx="10"/>
+          <rect x="330" y="194" width="250" height="56" rx="10"/>
+          <rect x="640" y="50" width="220" height="56" rx="10" fill="#FBF1F8" stroke="#A84E92"/>
+          <rect x="640" y="122" width="220" height="56" rx="10" fill="#FEF2F2" stroke="#991B1B"/>
+          <rect x="640" y="194" width="220" height="56" rx="10" fill="#FDF0E6" stroke="#B0500E"/>
+          <path d="M242 140 C 280 120, 290 80, 326 78" fill="none" marker-end="url(#q2cAr)"/>
+          <path d="M242 150 L326 150" fill="none" marker-end="url(#q2cAr)"/>
+          <path d="M242 160 C 280 180, 290 220, 326 222" fill="none" marker-end="url(#q2cAr)"/>
+          <path d="M582 78 L636 78" fill="none" marker-end="url(#q2cAr)"/>
+          <path d="M582 150 L636 150" fill="none" marker-end="url(#q2cAr)"/>
+          <path d="M582 222 L636 222" fill="none" marker-end="url(#q2cAr)"/>
+        </g>
+        <text class="q2cL" x="46" y="138">Lake Formation rule</text>
+        <text class="q2cS" x="46" y="156">claims.customer_id hidden</text>
+        <text class="q2cS" x="46" y="172">below clearance 3</text>
+        <text class="q2cL" x="346" y="74">Direct Athena query</text>
+        <text class="q2cS" x="346" y="92">with Identity Center propagation</text>
+        <text class="q2cL" x="346" y="146">SPICE copy</text>
+        <text class="q2cS" x="346" y="164">in-memory dataset</text>
+        <text class="q2cL" x="346" y="218">Chat knowledge base</text>
+        <text class="q2cS" x="346" y="236">agents answering in chat</text>
+        <text class="q2cG" x="656" y="74">Rule applied</text>
+        <text class="q2cS" x="656" y="92">same Region, per user</text>
+        <text class="q2cR" x="656" y="146">Not supported</text>
+        <text class="q2cS" x="656" y="164">use Quick's own row/column rules</text>
+        <text class="q2cW" x="656" y="218">Not documented</text>
+        <text class="q2cS" x="656" y="236">treat as not enforced</text>
+        <text class="q2cN" x="30" y="282">Compass applies the rule on every path because every path runs through Athena under the user's identity.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - a rule enforced on one of three paths is a rule you must re-implement on the other two</figcaption>
+    </figure>
+
+    <table class="clean">
+      <tr><th>Control Oakmere asked for</th><th>Pile</th><th>Detail</th></tr>
+      <tr><td>No training on our data</td><td>Reaches everything</td><td>Stated by AWS for every plan</td></tr>
+      <tr><td>Row and column security on datasets</td><td>Reaches Quick Sight</td><td>Dataset Q&amp;A respects it; defined inside Quick</td></tr>
+      <tr><td>Customer-managed KMS keys</td><td>Needs Enterprise</td><td>Set before any resource exists; the Q data key can never change; chat memory turns off</td></tr>
+      <tr><td>Private network to sources and MCP servers</td><td>Needs Enterprise</td><td>VPC connection; IP rules guard the web app, not the API</td></tr>
+      <tr><td>New AI features off until approved</td><td>Needs Enterprise</td><td>Otherwise every new feature is on for every user at launch</td></tr>
+      <tr><td>Source document permissions</td><td>Partial</td><td>S3, SharePoint, OneDrive, Google Drive, Confluence Cloud only; chosen at creation, permanent; 24-hour sync; not with Research</td></tr>
+      <tr><td>Lake Formation tiers in chat</td><td>Does not exist</td><td>Direct Athena only, as drawn above</td></tr>
+      <tr><td>Audit log with retrieved text</td><td>Does not exist</td><td>CloudTrail is metadata; chat logs are off by default and exclude retrieved text</td></tr>
+    </table>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Actions widen the blast radius<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>AWS's own agentic security page names the risk: it appears when an assistant can both read outside content and take an action. Automations sign in at service level, not with the permissions of the person who built them, and run unattended. Web actions run immediately with no human review by default. MCP and HTTP connectors can be added with no authentication. Compass's answer was to allow read-only SQL and nothing else. Quick's answer is configuration: approval steps, authenticated connectors and deny-by-default, most of it on Enterprise.</p>
+      </div>
+    </details>
+  </section>
+
+  <section class="section" id="demo-1">
+    <div class="section-kicker">
+      <span class="klabel">Build-along</span>
+      <h2>Talk to data, then read what it wrote</h2>
+      <span class="tag demo">★ 22 min · everyone builds</span>
+    </div>
+    <p class="lede">Dataset Q&amp;A turns a question into SQL and shows its working. The skill to build is reading that SQL as a reviewer would, because the answer is only as right as the query. Use a small public table: any CSV you can upload as a dataset works, and an Athena table works if your trial account can reach one.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Review loop: a plain question goes into Dataset Q and A, which produces SQL and an answer; the reviewer reads the SQL for four things: the right table, the right filter, the right aggregation, and the right time window; if any is wrong, the reviewer adds a field description or synonym and asks again.">
+        <defs>
+          <filter id="q2dSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="37" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.2" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <marker id="q2dAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#2B1B27" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .q2dH { font: 800 12px Inter, sans-serif; fill: #2B1B27; }
+          .q2dL { font: 600 12px Inter, sans-serif; fill: #2B1B27; }
+          .q2dS { font: 400 11px Inter, sans-serif; fill: #6B5766; }
+          .q2dW { font: 700 11px Inter, sans-serif; fill: #6B3006; }
+        </style>
+        <text class="q2dH" x="30" y="26">ASK, READ THE SQL, FIX THE MEANING, ASK AGAIN</text>
+        <g filter="url(#q2dSk)" fill="#FFFFFF" stroke="#2B1B27" stroke-width="2" stroke-linejoin="round">
+          <rect x="30" y="60" width="170" height="70" rx="12"/>
+          <rect x="250" y="60" width="170" height="70" rx="12" fill="#FBF1F8"/>
+          <rect x="470" y="50" width="390" height="90" rx="12" fill="#FBF1F8" stroke="#A84E92"/>
+          <rect x="250" y="170" width="380" height="56" rx="12" fill="#FDF0E6" stroke="#B0500E"/>
+          <path d="M202 95 L246 95" fill="none" marker-end="url(#q2dAr)"/>
+          <path d="M422 95 L466 95" fill="none" marker-end="url(#q2dAr)"/>
+          <path d="M660 142 C 660 170, 650 196, 634 196" fill="none" marker-end="url(#q2dAr)"/>
+          <path d="M248 198 C 120 198, 110 160, 112 134" fill="none" marker-end="url(#q2dAr)"/>
+        </g>
+        <text class="q2dL" x="46" y="90">Plain question</text>
+        <text class="q2dS" x="46" y="108">"motor claims last month"</text>
+        <text class="q2dL" x="266" y="90">Dataset Q&amp;A</text>
+        <text class="q2dS" x="266" y="108">SQL + answer + Explain</text>
+        <text class="q2dL" x="486" y="76">Read the SQL for four things</text>
+        <text class="q2dS" x="486" y="96">1 the right table   2 the right filter</text>
+        <text class="q2dS" x="486" y="114">3 the right aggregation   4 the right time window</text>
+        <text class="q2dW" x="266" y="194">Wrong? Add a field description</text>
+        <text class="q2dS" x="266" y="212">or a synonym, then ask again</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the curation step is where accuracy comes from; AWS's own guidance says so</figcaption>
+    </figure>
+
+    <div class="steps">
+      <div class="step">
+        <p><strong>Create a dataset from a small table.</strong> Upload a CSV of a few thousand rows with a date column, a category and an amount, or point at an Athena table. Name every column plainly. Note whether the dataset is queried directly or imported into SPICE: Part 3 showed why it matters.</p>
+        <div class="prompt-box good"><span class="label">★ Step 1 · your dataset card</span>Source:      claims_sample.csv (public sample, 5,000 rows)
+Columns:     claim_date, product, region, paid_amount
+Mode:        SPICE import  /  direct query   (circle one)</div>
+      </div>
+      <div class="step">
+        <p><strong>Ask a question with a hidden trap.</strong> "Last month" depends on today's date and on which date column counts. "Claims" might mean count or amount. Ask it the way a claims manager would, then open Explain.</p>
+        <div class="prompt-box good"><span class="label">★ Step 2 · the question</span>How much did we pay on motor claims last month?</div>
+      </div>
+      <div class="step">
+        <p><strong>Review the SQL for four things.</strong> Write down what it chose for each. A reviewer is looking for silent choices, not syntax errors.</p>
+        <div class="prompt-box good"><span class="label">★ Step 3 · the review</span>Table:        right one?            __
+Filter:       product = 'motor'?    __  (or 'Motor'? 'MOTOR'?)
+Aggregation:  SUM(paid_amount)?     __  (or COUNT?)
+Time window:  calendar last month?  __  (or last 30 days?)</div>
+      </div>
+      <div class="step">
+        <p><strong>Fix the meaning, not the question.</strong> Add a field description to paid_amount ("amount paid to the claimant, in SGD") and a synonym ("claims cost" for paid_amount). Ask again with different wording. Did the SQL change for the better?</p>
+      </div>
+      <div class="step">
+        <p><strong>Turn on the evidence trail.</strong> As an admin, find the chat logging settings and switch on delivery to CloudWatch or S3. Ask one more question, then open the log. Write down what it records and what it does not: AWS says it excludes the retrieved text.</p>
+        <div class="prompt-box good"><span class="label">★ Step 5 · what the log holds</span>Recorded:      __________________________
+Not recorded:  __________________________
+Default state before you switched it on:  off</div>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <p><strong>Compare with Compass.</strong> Compass's text-to-SQL faces the same four traps. Quick's advantage is the Explain view and the curation tools; Compass's is that every query runs through Athena under the asker's identity, so Lake Formation applies. Neither gets accuracy for free.</p>
+    </div>
+  </section>
+
+  <section class="section" id="exercise">
+    <div class="section-kicker">
+      <span class="klabel">Homework</span>
+      <h2>Before session 3</h2>
+      <span class="tag exercise">30 min</span>
+    </div>
+    <ol>
+      <li><strong>Price your own head count.</strong> Fill the four-line bill for your organisation at today's numbers, then at double the agent hours.</li>
+      <li><strong>Find your Region's row.</strong> Is it Global, geography, or not offered? Write one sentence your risk team would accept about where prompts are processed.</li>
+      <li><strong>Sort your controls.</strong> Put your risk team's list into the three piles. Every "does not exist" is a question for session 3.</li>
+      <li><strong>Write two questions for AWS.</strong> Whose account holds the index? Do Enterprise-only controls cover Professional users in a mixed account?</li>
+    </ol>
+  </section>
+
+  <section class="section" id="quiz">
+    <div class="section-kicker">
+      <span class="klabel">Check yourself</span>
+      <h2>Three questions</h2>
+    </div>
+    <p>Clear all three and session 2 gets stamped in your passport.</p>
+
+    <div class="quiz-q" data-answer="3">
+      <p class="qtext">1 · A Flow runs a Research report for each of 40 analysts every weekday, and each run waits two minutes on a slow internal system. What happens to agent hours?</p>
+      <button class="qopt" type="button">A · Nothing; waiting time is free</button>
+      <button class="qopt" type="button">B · Only reports someone opens are counted</button>
+      <button class="qopt" type="button">C · Scheduled runs use a separate free pool</button>
+      <button class="qopt" type="button">D · Every run consumes hours, including the time spent waiting on the slow system</button>
+      <p class="qwhy">AWS meters agent hours per second while active, including waiting on external tools, and says scheduled tasks consume hours on every run. One shared report would cost a fortieth as much.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="0">
+      <p class="qtext">2 · Oakmere runs Quick in Singapore. Which statement is accurate?</p>
+      <button class="qopt" type="button">A · Stored data stays in Singapore; prompts can be processed in any commercial Region, which Oakmere cannot switch off or see in logs</button>
+      <button class="qopt" type="button">B · Everything stays in Singapore</button>
+      <button class="qopt" type="button">C · Prompts stay in Singapore and Malaysia</button>
+      <button class="qopt" type="button">D · Oakmere can pin processing to Singapore with a service control policy</button>
+      <p class="qwhy">Storage and processing are separate promises. Singapore is listed with Global routing, and AWS says Bedrock controls such as service control policies do not apply inside Quick.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="2">
+      <p class="qtext">3 · Compass hides customer_id below clearance 3 with Lake Formation. Oakmere imports the claims table into SPICE and builds a chat agent on it. What holds?</p>
+      <button class="qopt" type="button">A · The Lake Formation rule applies everywhere automatically</button>
+      <button class="qopt" type="button">B · The rule applies once Identity Center is enabled</button>
+      <button class="qopt" type="button">C · The rule does not reach SPICE; Oakmere must rebuild it as Quick row and column security and check the chat path separately</button>
+      <button class="qopt" type="button">D · SPICE encrypts customer_id, so the rule is unnecessary</button>
+      <p class="qwhy">Lake Formation per-user rules reach Quick only on direct Athena queries with Identity Center propagation. SPICE is not supported, and chat enforcement is not documented. Encryption at rest does not hide a column from a user.</p>
+    </div>
+
+    <p class="quiz-score"></p>
+  </section>
+
+  <section class="section" id="official">
+    <div class="section-kicker">
+      <span class="klabel">Sources covered</span>
+      <h2>What this session teaches, and where it came from</h2>
+    </div>
+    <div class="covered">
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name"><a href="https://aws.amazon.com/quick/pricing/">Quick pricing</a></span><span class="note">Seats, the account fee, agent-hour metering, overage, storage, SPICE</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name"><a href="https://docs.aws.amazon.com/quick/latest/userguide/regions.html">Regions</a>, <a href="https://docs.aws.amazon.com/quick/latest/userguide/outbound-connections.html">outbound connections</a>, <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/global-cross-region-inference.html">Bedrock global inference</a></span><span class="note">Routing per Region, the cannot-disable statement, and the contradiction between pages</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name"><a href="https://docs.aws.amazon.com/quick/latest/userguide/best-practices-security.html">Security best practices</a> and <a href="https://docs.aws.amazon.com/quick/latest/userguide/sec-agentic-security.html">agentic security</a></span><span class="note">Keys, VPC, document permissions, logging, actions, deny-by-default</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name"><a href="https://docs.aws.amazon.com/quicksight/latest/user/athena-trusted-identity-propagation.html">Athena trusted identity propagation</a></span><span class="note">Lake Formation reaches direct Athena queries only; SPICE not supported</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name"><a href="https://aws.amazon.com/about-aws/whats-new/2026/05/amazon-quick-dataset-qa/">Dataset Q&amp;A GA</a> and <a href="https://aws.amazon.com/blogs/business-intelligence/curate-topics-in-amazon-q-in-quicksight-to-derive-maximum-value-and-improve-user-experience">topic curation guidance</a></span><span class="note">Dialects, row and column security, Explain, curation for accuracy</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Index location, mode burn rates, mixed-plan controls</span><span class="note">Not stated on any public AWS page; taught as questions to ask</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Oakmere's bill and controls list</span><span class="note">Constructed for teaching</span></div>
+    </div>
+  </section>
+
+  <section class="cheat" id="cheatsheet">
+    <h3>Session 2 cheat sheet <span>· pin this</span></h3>
+    <div class="grid-2">
+      <div class="cheat-item"><b>Four lines</b><span>Seats + $250 per account + hours over allowance x $3 + GB over pool x $5.</span></div>
+      <div class="cheat-item"><b>Hours are wall-clock</b><span>Per second while active, waiting on tools included, every scheduled run.</span></div>
+      <div class="cheat-item"><b>Two promises</b><span>Storage stays in the Region. Processing can cross Regions; Singapore, Mumbai, Sao Paulo are Global.</span></div>
+      <div class="cheat-item"><b>Lake Formation reach</b><span>Direct Athena with Identity Center: yes. SPICE: no. Chat: not documented.</span></div>
+      <div class="cheat-item"><b>Enterprise pile</b><span>Customer keys, private network, MCP, deny-by-default for new AI features.</span></div>
+      <div class="cheat-item"><b>Read the SQL</b><span>Table, filter, aggregation, time window. Fix meaning with descriptions and synonyms.</span></div>
+    </div>
+  </section>
+
+  <div class="callout next">
+    <span class="nx-pill">Next session</span>
+    <p>Priya has a bill, a data path and a sorted controls list. Session 3 puts them on one bench: Quick's cost against Compass's real cost, the deal-breakers for Oakmere's Region, what Oakmere could take with it if it ever left, and the three options a board can choose between.</p>
+  </div>
+
+  <footer class="pagefoot">
+    <span>Session 2 of 3 · learn-amazon-quick-with-phoebe · by Phoebe Fu &nbsp;·&nbsp; 📚 <a href="https://phoebefu6.github.io/learn-with-phoebe/">Learn with Phoebe ↗</a></span>
+    <span><a href="01-what-quick-is.html">← Previous: What Quick actually is</a> &nbsp;·&nbsp; <a href="03-build-or-buy-bench.html">Next: Build or buy →</a></span>
+  </footer>
+
+</main>
+
+<script src="../assets/app.js?v=1"></script>
+</body>
+</html>
